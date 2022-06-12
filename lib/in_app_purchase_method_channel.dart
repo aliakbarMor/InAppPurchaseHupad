@@ -10,7 +10,7 @@ class MethodChannelInAppPurchase extends InAppPurchasePlatform {
   final methodChannel = const MethodChannel('hupad_in_app_purchase');
   @override
   Future<List?> buy(String productId) async {
-    return
-      await methodChannel.invokeMethod<List>('buy',{'productId':productId});
+    return await methodChannel
+        .invokeMethod<List>('buy', {'productId': productId});
   }
 }

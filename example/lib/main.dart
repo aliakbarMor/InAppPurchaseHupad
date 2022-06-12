@@ -14,6 +14,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final _inAppPurchasePlugin = InAppPurchase();
+  final _messangerKey = GlobalKey<ScaffoldMessengerState>();
 
   @override
   void initState() {
@@ -23,13 +24,21 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scaffoldMessengerKey: _messangerKey,
       title: "In app purchase",
       home: Scaffold(
         body: InkWell(
             onTap: () {
-              _inAppPurchasePlugin.buy("test in app purchase",
-                  (productId, resualt) {
-                print('in app purchase result => $productId,$resualt');
+              _inAppPurchasePlugin.buy("f70a7225-e413-4138-9431-104958489623",
+                  (String productId, String trackingCode) {
+                debugPrint(
+                    'productId: $productId, trackingCode: $trackingCode');
+                _messangerKey.currentState?.showSnackBar(SnackBar(
+                    content:
+                        Text('Payment was successful \ntxid: $trackingCode')));
+              }, (error) {
+                _messangerKey.currentState
+                    ?.showSnackBar(SnackBar(content: Text(error)));
               });
             },
             child: Stack(
@@ -38,9 +47,6 @@ class _MyAppState extends State<MyApp> {
                     width: double.infinity,
                     height: double.infinity,
                     fit: BoxFit.fill),
-                Wrap(
-                  children: [],
-                )
               ],
             )),
       ),
