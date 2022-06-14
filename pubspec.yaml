@@ -1,7 +1,7 @@
 name: hupad_in_app_purchase
 description: A new Flutter project.
 version: 0.0.2
-homepage:
+homepage: https://github.com/aliakbarMor/InAppPurchaseHupad
 
 environment:
   sdk: ">=2.17.1 <3.0.0"

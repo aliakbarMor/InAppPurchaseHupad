@@ -3,8 +3,6 @@ import 'package:flutter/services.dart';
 import 'in_app_purchase_platform_interface.dart';
 
 class InAppPurchase {
-  final methodChannel = const MethodChannel('in_app_purchase');
-
   Future<void> buy(
       String productId,
       Function(String productId, String trackingCode) callback,
